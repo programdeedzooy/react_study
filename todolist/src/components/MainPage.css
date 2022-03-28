@@ -58,3 +58,8 @@ button {
     display: grid;
     grid-template-columns: auto auto auto auto;
 }
+
+.error {
+    color: red;
+    margin: 2px;
+}

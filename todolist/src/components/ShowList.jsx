@@ -1,21 +1,23 @@
 import React from "react";
 import PropTypes from "prop-types";
-
-function ShowList({ toDoList, changeView }) {
+import { Context } from "../App";
+function ShowList({ changeView }) {
+  const toDoList = React.useContext(Context);
+  console.log(toDoList);
   let showToDoList = toDoList.map((val, index) => {
     let feedBackArray = [];
-    if (val.feedBack[0].good === true) {
+    if (val.feedBack.good) {
       feedBackArray.push("good");
     }
-    if (val.feedBack[0].okay === true) {
+    if (val.feedBack.okay) {
       feedBackArray.push("okay");
     }
-    if (val.feedBack[0].notSatisfed === true) {
+    if (val.feedBack.notSatisfed) {
       feedBackArray.push("notSatisfed");
     }
-    let feedBacks = feedBackArray.map((val) => val + " , ");
+    const feedBacks = feedBackArray.map((val) => val + " , ");
     console.log(`feedBacks`, feedBacks);
-    let presentToDO = (
+    const presentToDO = (
       <div className="box">
         <div>option : {val.option}</div>
         <div>date : {val.date}</div>
@@ -26,7 +28,7 @@ function ShowList({ toDoList, changeView }) {
     );
     return <div key={index}>{presentToDO}</div>;
   });
-  let changeViewAction = () => {
+  const changeViewAction = () => {
     changeView(true);
   };
   return (

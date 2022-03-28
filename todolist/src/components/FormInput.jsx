@@ -4,33 +4,53 @@ import "./MainPage.css";
 function FormInput({ addTodoList, changeView }) {
   const [option, setOption] = useState("React.js");
   const [description, setDescription] = useState("");
-  const [dayNight, setDayNight] = useState("Day");
+  const [dayNight, setDayNight] = useState("");
   const [date, setDate] = useState(null);
-  const [feedBack, setFeedBack] = useState([
-    {
-      good: false,
-      okay: false,
-      notSatisfed: false,
-    },
-  ]);
+  const [feedBack, setFeedBack] = useState({
+    good: false,
+    okay: false,
+    notSatisfed: false,
+  });
+  const [error, setError] = useState({
+    description: true,
+    dayNight: true,
+    date: true,
+    all: false,
+  });
 
-  let toggleDone = (val) => {
-    let newState = [...feedBack];
-    newState[0][val] = !feedBack[0][val];
-    setFeedBack(newState);
+  const toggleDone = (val) => {
+    setFeedBack((preState) => ({ ...preState, [val]: !preState[val] }));
   };
 
-  let submit = async (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-    let newToDO = {
+    const newToDo = {
       option,
       description,
       dayNight,
       date,
       feedBack,
     };
-    await addTodoList((preToDoList) => [...preToDoList, newToDO]);
-    await changeView(false);
+    description.length <= 0
+      ? setError((preState) => ({ ...preState, description: false }))
+      : setError((preState) => ({ ...preState, description: true }));
+
+    dayNight.length <= 0
+      ? setError((preState) => ({ ...preState, dayNight: false }))
+      : setError((preState) => ({ ...preState, dayNight: true }));
+
+    date === null
+      ? setError((preState) => ({ ...preState, date: false }))
+      : setError((preState) => ({ ...preState, date: true }));
+
+    !error.description && !error.dayNight && !error.date
+      ? setError((preState) => ({ ...preState, all: false }))
+      : setError((preState) => ({ ...preState, all: true }));
+
+    if (error.all) {
+      await addTodoList((preToDoList) => [...preToDoList, newToDo]);
+      await changeView(false);
+    }
   };
 
   return (
@@ -57,6 +77,9 @@ function FormInput({ addTodoList, changeView }) {
               name="TaskDetial"
               onChange={(e) => setDescription(e.target.value)}
             ></input>
+            {!error.description && (
+              <div className="error">** pleas enter description **</div>
+            )}
           </div>
           <div className="formArrange">
             <label htmlFor="DayNight">Day/Night : </label>
@@ -75,6 +98,9 @@ function FormInput({ addTodoList, changeView }) {
                 onClick={(e) => setDayNight(e.target.value)}
               />
               <label htmlFor="Night">Night</label>
+              {!error.dayNight && (
+                <div className="error">**pleas select Day or Night **</div>
+              )}
             </div>
           </div>
           <div className="formArrange">
@@ -84,6 +110,9 @@ function FormInput({ addTodoList, changeView }) {
               name="Date"
               onChange={(e) => setDate(e.target.value)}
             />
+            {!error.date && (
+              <div className="error">** pleas select Date **</div>
+            )}
           </div>
           <div className="formArrange">
             <label htmlFor="Feedback">FeedBack : </label>
