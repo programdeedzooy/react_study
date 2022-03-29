@@ -4,7 +4,7 @@ import { Context } from "../App";
 function ShowList({ changeView }) {
   const toDoList = React.useContext(Context);
   console.log(toDoList);
-  let showToDoList = toDoList.map((val, index) => {
+  const showToDoList = toDoList.map((val, index) => {
     let feedBackArray = [];
     if (val.feedBack.good) {
       feedBackArray.push("good");
@@ -42,14 +42,14 @@ function ShowList({ changeView }) {
 }
 
 ShowList.prototype = {
-  toDoList: PropTypes.arrayOf(
-    PropTypes.exact({
-      option: PropTypes.string,
-      date: PropTypes.string,
-      feedBack: PropTypes.array,
-      description: PropTypes.string,
-    })
-  ),
+  // toDoList: PropTypes.arrayOf(
+  //   PropTypes.exact({
+  //     option: PropTypes.string,
+  //     date: PropTypes.string,
+  //     feedBack: PropTypes.array,
+  //     description: PropTypes.string,
+  //   })
+  // ),
   changeView: PropTypes.func,
 };
 

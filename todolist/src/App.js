@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import ToDoList from "./components/ToDoList";
 import MainPage from "./components/MainPage";
 
 export const Context = React.createContext();
