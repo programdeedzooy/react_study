@@ -70,7 +70,7 @@ function FormToDo() {
           }
         />
         {submitNumber > 0 && !toDoObject.email.includes("@gmail.com") ? (
-          <div>** please fill email **</div>
+          <div className="error">** please fill email **</div>
         ) : (
           ""
         )}
@@ -84,7 +84,7 @@ function FormToDo() {
           }
         />
         {submitNumber > 0 && toDoObject.description.length <= 0 ? (
-          <div>** please fill description ** </div>
+          <div className="error">** please fill description ** </div>
         ) : (
           ""
         )}
@@ -97,7 +97,7 @@ function FormToDo() {
           changeRadio={(val) => setToDoObject({ ...toDoObject, dayNight: val })}
         />
         {submitNumber > 0 && toDoObject.dayNight.length <= 0 ? (
-          <div>** please fill dayNight ** </div>
+          <div className="error">** please fill dayNight ** </div>
         ) : (
           ""
         )}
@@ -109,7 +109,7 @@ function FormToDo() {
           changeDate={(val) => setToDoObject({ ...toDoObject, date: val })}
         />
         {submitNumber > 0 && toDoObject.date.length <= 0 ? (
-          <div>** please fill date ** </div>
+          <div className="error">** please fill date ** </div>
         ) : (
           ""
         )}
