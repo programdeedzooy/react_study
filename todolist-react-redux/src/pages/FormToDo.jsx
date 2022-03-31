@@ -135,7 +135,8 @@ function FormToDo() {
       toDoObject.description.length > 0 &&
       toDoObject.dayNight.length > 0 &&
       toDoObject.date.length > 0 &&
-      emailError === false
+      emailError === false &&
+      dateError === false
     ) {
       dispacher(toDoListAction(toDoObject));
     }
@@ -194,7 +195,7 @@ function FormToDo() {
         />
         {submitNumber > 0 && toDoObject.date.length <= 0 ? (
           <div className="error">** please fill date ** </div>
-        ) : dateError === true ? (
+        ) : dateError ? (
           <div className="error">** please select currect date **</div>
         ) : null}
       </div>
