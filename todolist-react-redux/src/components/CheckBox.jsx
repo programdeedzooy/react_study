@@ -1,9 +1,6 @@
 import React from "react";
-
+import propType from "prop-types";
 function CheckBox({ checkBoxvalues, name, changeCheckBox }) {
-  const value = (val) => {
-    console.log(`val`, val);
-  };
   const chechBox = checkBoxvalues.map((checkBoxvalue) => {
     return (
       <span key={checkBoxvalue}>
@@ -20,3 +17,9 @@ function CheckBox({ checkBoxvalues, name, changeCheckBox }) {
 }
 
 export default CheckBox;
+
+CheckBox.prototype = {
+  checkBoxvalues: propType.array,
+  name: propType.string,
+  changeCheckBox: propType.func,
+};

@@ -16,18 +16,19 @@ function ShowList() {
       feedBackArray.push("notSatisfed");
     }
     const feedBacks = feedBackArray.map((val) => val + " , ");
-    console.log(`feedBacks`, feedBacks);
-    const presentToDO = (
-      <div className="box">
-        <div>option : {val.option}</div>
-        <div>email:{val.email}</div>
-        <div>date : {val.date}</div>
-        <div>Day/Night:{val.dayNight}</div>
-        <div>feedBack : {feedBacks}</div>
-        <div>description : {val.description}</div>
+    return (
+      <div key={index}>
+        {" "}
+        <div className="box">
+          <div>option : {val.option}</div>
+          <div>email:{val.email}</div>
+          <div>date : {val.date}</div>
+          <div>Day/Night:{val.dayNight}</div>
+          <div>feedBack : {feedBacks}</div>
+          <div>description : {val.description}</div>
+        </div>
       </div>
     );
-    return <div key={index}>{presentToDO}</div>;
   });
   return (
     <>
