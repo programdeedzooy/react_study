@@ -1,7 +1,7 @@
 import React from "react";
 import propType from "prop-types";
 
-function DropDown({ dropDownValues, name, changeDropDown }) {
+function DropDown({ dropDownValues, name, value, changeDropDown }) {
   const values = dropDownValues.map((dropDownValue) => (
     <option value={dropDownValue.key} key={dropDownValue.key}>
       {dropDownValue.displayName}
@@ -11,7 +11,7 @@ function DropDown({ dropDownValues, name, changeDropDown }) {
   return (
     <select
       name={name}
-      defaultValue={"---"}
+      value={value}
       onChange={(e) => changeDropDown(e.target.value, e.target.name)}
     >
       {values}
@@ -23,7 +23,7 @@ export default DropDown;
 
 DropDown.prototype = {
   dropDownValues: propType.arrayOf(
-    propType.shape({ key: propType.string, displayName: propType.string })
+    propType.exact({ key: propType.string, displayName: propType.string })
   ),
   name: propType.string,
   changeDropDown: propType.func,

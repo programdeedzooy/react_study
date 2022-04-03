@@ -7,7 +7,7 @@ import Date from "../components/Date";
 import DropDown from "../components/DropDown";
 import Input from "../components/Input";
 import Radio from "../components/Radio";
-import { toDoListAction } from "../redux/FormToDoList/ToDoListAction";
+import { ToDoList } from "../redux/reduxSlice/toDoListSlice";
 
 function FormToDo() {
   const [toDoObject, setToDoObject] = useState({
@@ -23,8 +23,8 @@ function FormToDo() {
     },
   });
 
-  const toDoList = useSelector((state) => state.toDoList);
-
+  const toDoList = useSelector((state) => state.toDoListSlice.toDoList);
+  console.log(`toDoList`, toDoList);
   const [submitNumber, setSubmitNumber] = useState(0);
   const [emailError, setEmailError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -53,16 +53,23 @@ function FormToDo() {
     },
   ];
 
-  const radiovalues = ["Day", "Night"];
-  const checkBoxvalues = ["good", "okay", "notSatisfed"];
+  const radiovalues = [
+    { key: "day", displayName: "Day" },
+    { key: "night", displayName: "Night" },
+  ];
+  const checkBoxvalues = [
+    { key: "good", displayName: "Good" },
+    { key: "okay", displayName: "Okay" },
+    { key: "notSatisfed", displayName: "Not Satisfed" },
+  ];
 
   /**
    * @function setValue
    * @param {string,string} val stateName
    * change the value of state object
    */
-  const setValue = async (val, stateName) => {
-    await setToDoObject((preState) => ({ ...toDoObject, [stateName]: val }));
+  const setValue = (val, stateName) => {
+    setToDoObject((preState) => ({ ...toDoObject, [stateName]: val }));
     if (stateName === "email") {
       emailValidation(val);
     }
@@ -85,11 +92,14 @@ function FormToDo() {
     if (!filter.test(emailValue)) {
       setEmailError(true);
       setErrorMessage("enter valid email");
+      return false;
     } else if (countOfEmail.length > 0) {
       setEmailError(true);
       setErrorMessage("email is alredy used");
+      return false;
     } else {
       setEmailError(false);
+      return true;
     }
   };
 
@@ -118,7 +128,11 @@ function FormToDo() {
         } else {
           setDateError(false);
         }
+      } else {
+        setDateError(false);
       }
+    } else {
+      setDateError(false);
     }
   };
 
@@ -129,6 +143,7 @@ function FormToDo() {
    */
   const submitForm = (e) => {
     e.preventDefault();
+
     setSubmitNumber((preState) => preState + 1);
     if (
       toDoObject.email.length > 0 &&
@@ -136,9 +151,10 @@ function FormToDo() {
       toDoObject.dayNight.length > 0 &&
       toDoObject.date.length > 0 &&
       emailError === false &&
-      dateError === false
+      dateError === false &&
+      emailValidation(toDoObject.email)
     ) {
-      dispacher(toDoListAction(toDoObject));
+      dispacher(ToDoList(toDoObject));
     }
   };
 
@@ -149,6 +165,7 @@ function FormToDo() {
         <DropDown
           dropDownValues={dropDownValuesNew}
           name="option"
+          value={toDoObject.option}
           changeDropDown={(val, stateName) => setValue(val, stateName)}
         />
       </div>
@@ -156,6 +173,7 @@ function FormToDo() {
         <label htmlFor="email">email :</label>
         <Input
           name="email"
+          value={toDoObject.email}
           changeDescription={(val, stateName) => setValue(val, stateName)}
         />
         {submitNumber > 0 && toDoObject.email.length <= 0 ? (
@@ -170,6 +188,7 @@ function FormToDo() {
         <label htmlFor="description">Task Detial :</label>
         <Input
           name="description"
+          value={toDoObject.description}
           changeDescription={(val, stateName) => setValue(val, stateName)}
         />
         {submitNumber > 0 && toDoObject.description.length <= 0 && (
@@ -181,6 +200,8 @@ function FormToDo() {
         <Radio
           radiovalues={radiovalues}
           name="dayNight"
+          value={toDoObject.dayNight}
+          submitNumber={submitNumber}
           changeRadio={(val, stateName) => setValue(val, stateName)}
         />
         {submitNumber > 0 && toDoObject.dayNight.length <= 0 && (
@@ -191,6 +212,7 @@ function FormToDo() {
         <label htmlFor="date">Date : </label>
         <Date
           name="date"
+          value={toDoObject.date}
           changeDate={(val, stateName) => setValue(val, stateName)}
         />
         {submitNumber > 0 && toDoObject.date.length <= 0 ? (
@@ -200,10 +222,11 @@ function FormToDo() {
         ) : null}
       </div>
       <div>
-        <label htmlFor="Feedback">FeedBack : </label>
+        <label htmlFor="feedBack">FeedBack : </label>
         <CheckBox
           checkBoxvalues={checkBoxvalues}
-          name="Feedback"
+          name="feedBack"
+          value={toDoObject.feedBack}
           changeCheckBox={(key) =>
             setToDoObject({
               ...toDoObject,

@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
 import propType from "prop-types";
-function Radio({ radiovalues, name, changeRadio }) {
+function Radio({ radiovalues, name, value, changeRadio, submitNumber }) {
   const radio = radiovalues.map((radiovalue) => {
     return (
-      <span key={radiovalue}>
+      <span key={radiovalue.key}>
         <input
           name={name}
           type="radio"
-          value={radiovalue}
+          value={radiovalue.key}
           onClick={(e) => changeRadio(e.target.value, e.target.name)}
         />
-        <label htmlFor={radiovalue}>{radiovalue}</label>
+        <label htmlFor={radiovalue.displayName}>{radiovalue.displayName}</label>
       </span>
     );
   });
@@ -19,7 +19,9 @@ function Radio({ radiovalues, name, changeRadio }) {
 
 export default Radio;
 Radio.prototype = {
-  radiovalues: propType.array,
+  radiovalues: propType.arrayOf(
+    propType.exact({ key: propType.string, displayName: propType.string })
+  ),
   name: propType.string,
   changeRadio: propType.func,
 };

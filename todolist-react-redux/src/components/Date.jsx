@@ -1,11 +1,12 @@
 import React from "react";
 import propType from "prop-types";
 
-function Date({ name, changeDate }) {
+function Date({ name, changeDate, value }) {
   return (
     <input
       type="date"
       name={name}
+      value={value}
       onChange={(e) => changeDate(e.target.value, e.target.name)}
     />
   );
