@@ -218,7 +218,7 @@ function FormToDo() {
         {submitNumber > 0 && toDoObject.date.length <= 0 ? (
           <div className="error">** please fill date ** </div>
         ) : dateError ? (
-          <div className="error">** please select currect date **</div>
+          <div className="error">** please select past or present date **</div>
         ) : null}
       </div>
       <div>
