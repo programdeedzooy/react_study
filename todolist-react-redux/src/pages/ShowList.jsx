@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import "../style/ShowList.css";
 function ShowList() {
   const toDoList = useSelector((state) => state.toDoListSlice.toDoList);
-  console.log(`toDoList`, toDoList);
+  // console.log(`toDoList`, toDoList);
   const showToDoList = toDoList.map((val, index) => {
     let feedBackArray = [];
     if (val.feedBack.good) {

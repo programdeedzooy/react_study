@@ -24,7 +24,7 @@ function FormToDo() {
   });
 
   const toDoList = useSelector((state) => state.toDoListSlice.toDoList);
-  console.log(`toDoList`, toDoList);
+  // console.log(`toDoList`, toDoList);
   const [submitNumber, setSubmitNumber] = useState(0);
   const [emailError, setEmailError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");

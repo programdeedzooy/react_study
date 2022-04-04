@@ -12,7 +12,7 @@ function Date({ name, changeDate, value }) {
       ? parseInt(moment().date())
       : "0" + moment().date();
   const today = yearNow + "-" + monthNow + "-" + dateNow;
-  console.log(`today`, today);
+
   return (
     <input
       type="date"
