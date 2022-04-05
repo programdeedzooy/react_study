@@ -16,13 +16,11 @@ const WinnerComponent = (OriginalComponent) => {
     const [team, setTeam] = useState("");
     const [teamSelectToss, setTeamSelectToss] = useState(0);
 
-    const values = tossArray.map((val) => {
-      return (
-        <option key={val.key} value={val.key}>
-          {val.displayName}
-        </option>
-      );
-    });
+    const values = tossArray.map((val) => (
+      <option key={val.key} value={val.key}>
+        {val.displayName}
+      </option>
+    ));
 
     const selectToss = (
       <select onChange={(e) => setTeamSelectToss(e.target.value)}>

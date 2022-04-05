@@ -49,4 +49,4 @@ FlipToss.propTypes = {
   teamSelectToss: PropTypes.any,
 };
 
-export default WinnerComponent(FlipToss, "guna");
+export default WinnerComponent(FlipToss);
