@@ -32,7 +32,7 @@ function SeasonMatch({ onChangeSeason }) {
 }
 
 SeasonMatch.propTypes = {
-  onChangeSeason: PropTypes.func,
+  onChangeSeason: PropTypes.func.isRequired,
 };
 
 export default SeasonMatch;

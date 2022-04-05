@@ -30,8 +30,8 @@ function FlipToss({ team, teamSelectToss, teamSelect, selectToss }) {
   return (
     <>
       {teamSelect}
-      {selectToss}
-      <button onClick={selectWinner}>flip</button>
+      {team!=="" && selectToss}
+     {team!=="" && <button onClick={selectWinner}>Toss</button>}
       <h1>{winner}</h1>
       {next && (
         <button>
@@ -43,10 +43,14 @@ function FlipToss({ team, teamSelectToss, teamSelect, selectToss }) {
 }
 
 FlipToss.propTypes = {
-  selectToss: PropTypes.element,
+  selectToss: PropTypes.element.isRequired,
   team: PropTypes.string,
-  teamSelect: PropTypes.element,
-  teamSelectToss: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+  teamSelect: PropTypes.element.isRequired,
+  teamSelectToss: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
 };
+
+FlipToss.defaultProps = {
+  team:""
+}
 
 export default WinnerComponent(FlipToss);

@@ -14,7 +14,7 @@ function SeasonScore({ numberOfSeason }) {
    * @function change
    * @param {object} e
    * @param {number} i
-   * @param {*} name
+   * @param {string} name
    * set the value for scoreByATeam/scoreByBTeam
    */
   const change = (e, i, name) => {
@@ -89,5 +89,9 @@ function SeasonScore({ numberOfSeason }) {
 SeasonScore.propTypes = {
   numberOfSeason: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
+
+SeasonScore.defaultProps={
+  numberOfSeason:2
+}
 
 export default SeasonScore;
