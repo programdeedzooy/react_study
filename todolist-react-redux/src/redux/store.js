@@ -8,12 +8,13 @@ import logger from "redux-logger"
 // export default store
 
 import { configureStore, } from "@reduxjs/toolkit"
-import toDoListSlice from "./reduxSlice/toDoListSlice"
+// import toDoListSlice from "./reduxSlice/toDoListSlice"
+import footballScore from "./reduxSlice/footballScore"
 
 
 export default configureStore({
     reducer: {
-        toDoListSlice: toDoListSlice
+        footballScore: footballScore
     },
     middleware: [logger]
 })

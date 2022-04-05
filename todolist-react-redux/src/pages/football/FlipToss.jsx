@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import WinnerComponent from "../HOC/WinnerSelection";
+import WinnerComponent from "../../HOC/WinnerSelection";
 function FlipToss({ team, teamSelectToss, teamSelect, selectToss }) {
   const [winner, setWinner] = useState("");
   const [next, setNext] = useState(false);

@@ -1,13 +1,15 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
-
+import { useDispatch } from "react-redux";
+import { scoreUpdate } from "../../redux/reduxSlice/footballScore";
+import { Link } from "react-router-dom";
 function SeasonScore({ numberOfSeason }) {
   const [teamAScore, setTeamAScore] = useState([0]);
   const [teamBScore, setTeamBScore] = useState([0]);
   const [winner, setwinner] = useState("");
   let scoreByATeam = [];
   let scoreByBTeam = [];
-
+  const dispach = useDispatch();
   /**
    * @function change
    * @param {object} e
@@ -22,19 +24,25 @@ function SeasonScore({ numberOfSeason }) {
   };
 
   /**
-   * @function submit
-   * select the winner by the score
+   * @function submitScoreUpdate
+   * dispach the objectOfScore to update score
    */
-  const submit = () => {
-    scoreByATeam.map((val) =>
-      setTeamAScore((preState) => parseInt(preState) + parseInt(val))
-    );
-    scoreByBTeam.map((val) =>
-      setTeamBScore((preState) => parseInt(preState) + parseInt(val))
-    );
-    setwinner(
-      teamAScore > teamBScore ? "team A won the match" : "team B won the match"
-    );
+
+  const submitScoreUpdate = () => {
+    let arrayOfScore = [];
+    for (let i = 0; i < numberOfSeason; i++) {
+      let objectOfScore = {
+        season: 0,
+        teamAScore: 0,
+        teamBScore: 0,
+      };
+      objectOfScore.season = i;
+      objectOfScore.teamAScore = scoreByATeam[i];
+      objectOfScore.teamBScore = scoreByBTeam[i];
+      console.log(`objectOfScore`, objectOfScore);
+      arrayOfScore[i] = objectOfScore;
+    }
+    dispach(scoreUpdate(arrayOfScore));
   };
 
   let inputA = [];
@@ -70,8 +78,10 @@ function SeasonScore({ numberOfSeason }) {
     <>
       {inputA}
       {inputB}
-      <button onClick={submit}>submit</button>
-      {winner}
+      <button onClick={submitScoreUpdate}>Update Score</button>
+      <button>
+        <Link to="/winner">show winner</Link>
+      </button>
     </>
   );
 }
