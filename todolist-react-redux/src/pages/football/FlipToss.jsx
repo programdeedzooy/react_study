@@ -1,29 +1,34 @@
 import PropTypes from "prop-types";
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import {useDispatch} from "react-redux"
 import WinnerComponent from "../../HOC/WinnerSelection";
+import {tossWinnerUpdate} from "../../redux/reduxSlice/footballScore"
 function FlipToss({ team, teamSelectToss, teamSelect, selectToss }) {
   const [winner, setWinner] = useState("");
   const [next, setNext] = useState(false);
+  const dispatch = useDispatch()
   /**
    * @function selectWinner
    * select the winner by random
    */
-  const selectWinner = () => {
+  const selectWinner = async() => {
     let oneOrZero = Math.random() >= 0.5 ? 1 : 0;
     console.log(`oneOrZero`, oneOrZero);
     let selectWinner =
       team === "team1"
         ? oneOrZero === parseInt(teamSelectToss)
-          ? "team1 win the toss"
-          : "team2 win the toss"
+          ? "team1"
+          : "team2"
         : oneOrZero === parseInt(teamSelectToss)
-        ? "team2 win the toss"
-        : "team1 win the toss";
+        ? "team2"
+        : "team1";
     console.log(winner);
-    setWinner(selectWinner);
+   await setWinner(selectWinner);
     if (selectWinner !== "") {
+      await  dispatch(tossWinnerUpdate(selectWinner))
       setNext(true);
+   
     }
   };
 
@@ -32,7 +37,7 @@ function FlipToss({ team, teamSelectToss, teamSelect, selectToss }) {
       {teamSelect}
       {team!=="" && selectToss}
      {team!=="" && <button onClick={selectWinner}>Toss</button>}
-      <h1>{winner}</h1>
+      <h1>{ next && `${winner} win the toss`}</h1>
       {next && (
         <button>
           <Link to="/match">next</Link>
