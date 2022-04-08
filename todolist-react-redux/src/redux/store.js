@@ -10,10 +10,11 @@ import logger from "redux-logger"
 import { configureStore, } from "@reduxjs/toolkit"
 // import toDoListSlice from "./reduxSlice/toDoListSlice"
 import footballScore from "./reduxSlice/footballScore"
-
+import marvalFanDetial from "./reduxSlice/marvalFanDetial"
 
 export default configureStore({
     reducer: {
+        marvalFanDetial:marvalFanDetial,
         footballScore: footballScore
     },
     middleware: [logger]
