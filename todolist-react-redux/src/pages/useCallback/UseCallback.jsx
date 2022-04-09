@@ -5,6 +5,11 @@ import Count from './Count';
 function UseCallback() {
   const [count1, setcount1] = useState(0);
   const [count2, setcount2] = useState(0);
+
+  /**
+   * @function count1Update
+   * update value for count1
+   */
     const count1Update=useCallback(
         ()=>{
             setcount1(count1+1)
@@ -13,7 +18,10 @@ function UseCallback() {
     )
     
     
-
+  /**
+   * @function count2Update
+   * update value for count2
+   */
     const count2Update=useCallback(
         ()=>{
             setcount2(count2+10)
