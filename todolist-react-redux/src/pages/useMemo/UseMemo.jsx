@@ -24,7 +24,7 @@ function UseMemo() {
   return (
     <>
     <button onClick={count1Update}>count1 - {count1}</button>
-    {isEven() ? 'Even' : 'odd'}
+    {isEven ? 'Even' : 'odd'}
     <button onClick={count2Update}>count2 - {count2}</button>
     </>
   )
