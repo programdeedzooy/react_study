@@ -5,13 +5,17 @@ import store from "./redux/store";
 // import Home from "./pages/football/Home";
 import FormInputs from "./pages/marval/FormInputs";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import UseCallback from "./pages/useCallback/UseCallback";
+import UseMemo from "./pages/useMemo/UseMemo";
 
 function App() {
   return (
     <Provider store={store}>
       {/* <HomePage /> */}
       {/* <Home /> */}
-      <FormInputs/>
+      {/* <FormInputs/> */}
+      {/* <UseCallback/> */}
+      <UseMemo/>
     </Provider>
   );
 }
