@@ -8,7 +8,7 @@ function Count({text,count}) {
 }
 Count.prototype={
   text:PropTypes.string,
-  count:PropTypes.oneOfType(PropTypes.string,PropTypes.number).isRequired
+  count:PropTypes.oneOfType([PropTypes.string,PropTypes.number]).isRequired
 }
 
 Count.defaultProps = {

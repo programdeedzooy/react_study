@@ -11,14 +11,16 @@ function FormInputs() {
 
   const [show, setShow] = useState(false);
 
-
-  const { register, handleSubmit, formState: { errors }, reset, clearErrors } = useForm();
+  const { register, handleSubmit, formState: { errors }, reset, clearErrors } = useForm({defaultValues:{
+    fan:"marval"
+  }});
 
   const fanDetial = useSelector((state) => state.marvalFanDetial.marvalFanDetialLists)
-
+  const heroDetial = useSelector((state) => state.marvalFanDetial.heroDetails)
+  console.log("heroDetial",heroDetial);
   const dispatch = useDispatch()
 
-  let checked = "marval"
+  // let checked = "marval"
 
   const movies = fanDetial.map((val) => val.movie)
   // console.log("movies", movies);
@@ -56,7 +58,20 @@ function FormInputs() {
     reset()
   }
 
-  let detials = fanDetial.map((val, index) => {
+
+  const heroName =(
+    <select {...register("heroName")}>
+    {heroDetial.map((val)=> <option value={val.heroName}>{val.heroName}</option> )}
+  </select>
+  )
+
+  const character = (
+    <select {...register("character")}>
+    {heroDetial.map((val)=> <option value={val.character}>{val.character}</option> )}
+  </select>
+  )
+
+  const detials = fanDetial.map((val, index) => {
     const detial = (<div key={index}>
       <div>name : {val.name}</div>
       <div>age : {val.movie}</div>
@@ -80,6 +95,12 @@ function FormInputs() {
     return flag === false
   }
   // console.log("error", errors);
+
+  if(heroDetial.length===0)
+  {
+    return <h1>pleasse fill heroName</h1>
+  }
+
 
   return (
     <>
@@ -110,22 +131,19 @@ function FormInputs() {
             </div>
             <div>
               <label htmlFor="">fan : </label>
-              <input {...register("fan")} type="radio" value="marval" defaultChecked={checked === "marval"} />
+              <input {...register("fan")} type="radio" value="marval"/>
               <label htmlFor="">marval </label>
-              <input {...register("fan")} type="radio" value="DC" defaultChecked={checked === "DC"} />
+              <input {...register("fan")} type="radio" value="DC"  />
               <label htmlFor="">DC </label>
             </div>
 
             <div>
               <label htmlFor="">hero cast : </label>
-              <input {...register("cast")} type="checkbox" value="Stan Lee" />
-              <label htmlFor="">Stan Lee</label>
-              <input {...register("cast")} type="checkbox" value="Robert Downey Jr." />
-              <label htmlFor="">Robert Downey </label>
-              <input {...register("cast")} type="checkbox" value="Benedict Cumberbatch" />
-              <label htmlFor="">Benedict Cumberbatch</label>
-              <input {...register("cast")} type="checkbox" value="Chris Evans " />
-              <label htmlFor="">Chris Evans </label>
+              {heroName}
+            </div>
+            <div>
+              <label htmlFor=""> character: </label>
+              {character}
             </div>
             {movies.length > 0 && <div>
               <label htmlFor="">link Movie  : </label>
