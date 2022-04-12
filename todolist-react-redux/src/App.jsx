@@ -7,15 +7,18 @@ import FormInputs from "./pages/marval/FormInputs";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import UseCallback from "./pages/useCallback/UseCallback";
 import UseMemo from "./pages/useMemo/UseMemo";
+import MathFunction from "./pages/HooksExample/MathFunction";
+
 
 function App() {
   return (
     <Provider store={store}>
       {/* <HomePage /> */}
       {/* <Home /> */}
-      {/* <FormInputs/> */}
+      <FormInputs/>
       {/* <UseCallback/> */}
-      <UseMemo/>
+      {/* <UseMemo/> */}
+      {/* <MathFunction/> */}
     </Provider>
   );
 }
