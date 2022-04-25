@@ -15,12 +15,16 @@ function HospitalDetails() {
   const dispatch = useDispatch();
   const { loading,data } = useSelector((state: TStore) => state.hospitalReducer);
  
+  /**
+   * @function getHospitalDetails
+   * @param {}  
+   * ton get hospital detials
+   */
   const getHospitalDetails = () => {
     getHospitalDetials(dispatch)
    };
 
 
-  console.log("data",data);
   let details:JSX.Element[]=[<h1>""</h1>];
   if(data.length>0)
   {

@@ -14,7 +14,6 @@ function DocterDerials() {
   const { loading,data } = useSelector((state: TStore) => state.doctorReducer);
  
 
-  console.log("data",data);
   let details:JSX.Element[]=[<h1>""</h1>];
   if(data.length>0)
   {

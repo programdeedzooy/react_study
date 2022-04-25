@@ -40,6 +40,11 @@ function Appointment() {
     hospitalOptions = doctorDetials.map((val, index) => <option key={index} value={val.hospitalName}>{val.hospitalName}</option>)
   }
   
+  /**
+   * @function selectDoctor
+   * @param {object} e 
+   * set value for doctor list
+   */
 const selectDoctor =(e:any)=>{
   const hospital = e.target.value
   console.log(hospital);
@@ -48,14 +53,22 @@ const selectDoctor =(e:any)=>{
   setDoctorOPtion(doctorlist.map((val,index)=><option key={index} value={val.docterName}>{val.docterName}-{val.specialist}</option>))
 }
 
-
+/**
+   * @function onsubmit
+   * @param {object} data 
+   * sumit the val 
+   */
 const onSubmit = (data:any)=>{
  dispatch(updateAppooinment(data))
  setShow(false)
  reset()
 }
 
-
+/**
+   * @function cancel
+   * @param {}  
+   * cancel the form
+   */
 const cancel = () => {
   setShow(false)
   clearErrors()
