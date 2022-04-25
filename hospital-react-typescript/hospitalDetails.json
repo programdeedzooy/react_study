@@ -1,0 +1,80 @@
+{
+  "Hospital":[
+      {
+          "hospitalName":"PSG Hospital",
+          "place":"coimbatore"
+      },
+      {
+          "hospitalName":"Newlife hospital",
+          "place":"channi"
+      },
+      {
+          "hospitalName":"Care & Cure Hospital",
+          "place":"palani"
+      },
+      {
+          "hospitalName":"Health Object Hospital",
+          "place":"madurai"
+      },
+      {
+          "hospitalName":"True life care",
+          "place":"trichy"
+      }
+  ],
+  "Docter":[
+      {
+          "docterName":"Dr. Gunalan",
+          "hospitalName":"PSG Hospital",
+          "specialist":"neurologist",
+          "meaning":"brain specialist"
+      },
+      {
+          "docterName":"Dr. William",
+          "hospitalName":"Newlife hospital",
+          "specialist":"dentist",
+          "meaning":"tooth specialist"
+      },
+      {
+          "docterName":"Dr. Myles",
+          "hospitalName":"Care & Cure Hospital",
+          "specialist":"cardiologist",
+          "meaning":"heart specialist"
+      },
+      {
+          "docterName":" Dr. Fouad",
+          "hospitalName":"Health Object Hospital",
+          "specialist":"podiatrist",
+          "meaning":"foot specialist"
+      },
+      {
+          "docterName":"Dr. Khalid Abbed",
+          "hospitalName":"True life care",
+          "specialist":"psychiatrist",
+          "meaning":"specialist in mental health"
+      },
+      {
+          "docterName":"Dr. Naresh Trehan",
+          "hospitalName":"Newlife hospital",
+          "specialist":"radiologist",
+          "meaning":"specializes in imaging tests"
+      },
+      {
+          "docterName":"Dr. Arthur Reese Abright",
+          "hospitalName":"Newlife hospital",
+          "specialist":"massage therapist",
+          "meaning":"specializes in muscle relaxation"
+      },
+      {
+          "docterName":"Dr. Corrie",
+          "hospitalName":"PSG Hospital",
+          "specialist":"allergist",
+          "meaning":"specializes in determining food and environmental allergies"
+      },
+      {
+          "docterName":"Dr. Mark",
+          "hospitalName":"Newlife hospital",
+          "specialist":"dentist",
+          "meaning":"tooth specialist"
+      }
+  ]
+}
