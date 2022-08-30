@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getDoctorDetials } from "./../redux/doctorDetials/doctorDetials";
 import {TStore}from "../redux/store";
 import {Table} from "react-bootstrap";
-import {StyleBody,StyleTd,StyleThead,StyledTable} from "../styled/tableStyled"
+import {StyleBody,StyleTd,StyleThead,StyledTable,StyleHospitalName} from "../styled/tableStyled"
 
 function DocterDerials() {
   useEffect(() => {
@@ -21,7 +21,7 @@ function DocterDerials() {
     return(   
         <tr key={val.docterName}>
             <StyleTd>{val.docterName}</StyleTd>
-            <StyleTd>{val.hospitalName}</StyleTd>
+            <StyleHospitalName hospitalNameColor={val.hospitalName} >{val.hospitalName}</StyleHospitalName>
             <StyleTd>{val.specialist}</StyleTd>
             <StyleTd>{val.meaning}</StyleTd>
        </tr>

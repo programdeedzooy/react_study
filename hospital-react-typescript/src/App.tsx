@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import {Navbar,Container,Table  } from "react-bootstrap"
-import {BrowserRouter as Router,Routes,Route  } from "react-router-dom"
+import {BrowserRouter as Router,Routes,Route,Link  } from "react-router-dom"
   
 import "./App.css"
 import HospitalDetails from "./pages/HospitalDetails";
@@ -12,28 +12,41 @@ const App = () => {
   
 return (
   <div className="navdiv">
-    <div className="nav">
+   
+
+<Router>
+<div className="nav">
   <Navbar bg="light" className="nav">
     <Container>
-      <Navbar.Brand href="/HospitalDetails">Hospitaldetials</Navbar.Brand>
+      <Navbar.Brand >
+        <Link to="/">
+        Hospitaldetials
+        </Link>
+        </Navbar.Brand>
     </Container>
   </Navbar>
   <Navbar bg="light" className="nav">
     <Container>
-      <Navbar.Brand href="/DocterDetails">DocterDetails</Navbar.Brand>
+      <Navbar.Brand >
+      <Link to="/DocterDetails">
+        DocterDetails
+        </Link>
+        </Navbar.Brand>
     </Container>
   </Navbar>
   <Navbar bg="light" className="nav">
     <Container>
-      <Navbar.Brand href="/Appointment">Appoinment</Navbar.Brand>
+      <Navbar.Brand>
+        <Link to="/Appointment">
+        Appoinment
+        </Link>
+        </Navbar.Brand>
     </Container>
   </Navbar>
 </div>
-<div>
 
-<Router>
   <Routes>
-    <Route path="/HospitalDetails" element={<HospitalDetails/>}/>
+    <Route path="/" element={<HospitalDetails/>}/>
     <Route path="/DocterDetails" element={<DocterDerials/>}/>
     <Route path="/Appointment" element={<Appointment/>} />
   </Routes>
@@ -41,7 +54,6 @@ return (
 
 </div>
 
-  </div>
 );
 }
 
